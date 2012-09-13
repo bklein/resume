@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.find(:all, :order => "id DESC")
 		@user = User.new # user for top form
     respond_to do |format|
       format.html # index.html.erb

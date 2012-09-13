@@ -1,0 +1,13 @@
+<%- model_class = User -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<div id="new_form" %><%= render :partial => 'form' %></div>
+<div id="users" %>
+	<% @users.each do |user| %>
+		<%= render :partial => 'row', :locals => {:user => user} %>
+	<% end %>
+ </div>
+ <%= link_to t('.new', :default => t("helpers.links.new")),
+            new_user_path,
+            :class => 'btn btn-primary' %>

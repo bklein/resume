@@ -1,0 +1,26 @@
+<div class="well well-large" id="user_<%= user.id %>">
+		<h3>
+			<%= user.name %>
+				
+			<%= link_to user, :method => :delete, :remote => true do %>
+				<i class="icon-remove"> </i>
+			<% end %>
+			<%= link_to more_url(user), :remote => true do %>
+			 <i class="icon-circle-arrow-down"> </i>
+			<% end %>
+			<div class="btn-group">
+				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+				Add language
+				<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<% Language.all.each do |lan| %>
+						<li>
+							<%= link_to lan.name, add_url(user, lan), :remote => true, :method => :post, :id => "lan_#{lan.id}", :class => 'add_skill'  %>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+		</h3>
+		<div id="user_lan_<%= user.id %>" ></div>
+</div>

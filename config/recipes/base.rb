@@ -1,4 +1,3 @@
-# borrowing some functions from Ryan Bates
 def template(from, to)
   erb = File.read(File.expand_path("../templates/#{from}", __FILE__))
   put ERB.new(erb).result(binding), to
@@ -9,11 +8,9 @@ def set_default(name, *args, &block)
 end
 
 namespace :deploy do
-  desc "Install everything"
+  desc "Install everything onto the server"
   task :install do
-    run "#{sudo} apt-get update -y"
-    run "#{sudo} apt-get install -y python-software-properties build-essential zlib1g-dev libssl-dev libreadline-gplv2-dev libyaml-dev
+    run "#{sudo} apt-get -y update"
+    run "#{sudo} apt-get -y install python-software-properties"
   end
-
 end
-

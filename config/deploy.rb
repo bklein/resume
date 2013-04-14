@@ -1,7 +1,7 @@
 require 'bundler/capistrano'
 
-%w[base rvm nodejs nginx postgresql].each do |recipe|
-  load "config/recipes/#{recipe}"
+%w[rvm nodejs nginx postgresql].each do |recipe|
+  load "./config/recipes/#{recipe}"
 end
 
 server "198.46.149.43", :web, :app, :db, primary: true

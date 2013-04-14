@@ -1,6 +1,7 @@
 require 'bundler/capistrano'
+require 'rvm/capistrano'
 
-%w[base rvm nodejs nginx postgresql].each do |recipe|
+%w[base nodejs nginx postgresql].each do |recipe|
   load "./config/recipes/#{recipe}"
 end
 
@@ -23,3 +24,11 @@ ssh_options[:forward_agent] = true
 
 # if you want to clean up old releases on each deploy uncomment this:
 after "deploy:restart", "deploy:cleanup"
+
+
+# setup RVM
+set :rvm_ruby_string, :local        # use the same ruby as used locally for deployment
+
+before 'deploy', 'rvm:install_rvm'  # update RVM
+before 'deploy', 'rvm:install_ruby' # install Ruby and create gemset (both if missing)
+

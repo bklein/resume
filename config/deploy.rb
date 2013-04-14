@@ -1,6 +1,6 @@
 require 'bundler/capistrano'
 
-%w[rvm nodejs nginx postgresql].each do |recipe|
+%w[base rvm nodejs nginx postgresql].each do |recipe|
   load "./config/recipes/#{recipe}"
 end
 
